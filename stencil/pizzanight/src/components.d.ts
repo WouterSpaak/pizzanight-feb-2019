@@ -12,58 +12,65 @@ import '@stencil/core';
 
 export namespace Components {
 
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
+  interface PzaRating {
+    'emptySymbol': string;
+    'filledSymbol': string;
+    'max': number;
+    'min': number;
+    'value': number;
   }
-  interface MyComponentAttributes extends StencilHTMLAttributes {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
+  interface PzaRatingAttributes extends StencilHTMLAttributes {
+    'emptySymbol'?: string;
+    'filledSymbol'?: string;
+    'max'?: number;
+    'min'?: number;
+    'onRatingChange'?: (event: CustomEvent<number>) => void;
+    'value'?: number;
+  }
+
+  interface PzaStar {
+    'index': number;
+    'star': string;
+  }
+  interface PzaStarAttributes extends StencilHTMLAttributes {
+    'index'?: number;
+    'onSelected'?: (event: CustomEvent<number>) => void;
+    'star'?: string;
   }
 }
 
 declare global {
   interface StencilElementInterfaces {
-    'MyComponent': Components.MyComponent;
+    'PzaRating': Components.PzaRating;
+    'PzaStar': Components.PzaStar;
   }
 
   interface StencilIntrinsicElements {
-    'my-component': Components.MyComponentAttributes;
+    'pza-rating': Components.PzaRatingAttributes;
+    'pza-star': Components.PzaStarAttributes;
   }
 
 
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  interface HTMLPzaRatingElement extends Components.PzaRating, HTMLStencilElement {}
+  var HTMLPzaRatingElement: {
+    prototype: HTMLPzaRatingElement;
+    new (): HTMLPzaRatingElement;
+  };
+
+  interface HTMLPzaStarElement extends Components.PzaStar, HTMLStencilElement {}
+  var HTMLPzaStarElement: {
+    prototype: HTMLPzaStarElement;
+    new (): HTMLPzaStarElement;
   };
 
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement
+    'pza-rating': HTMLPzaRatingElement
+    'pza-star': HTMLPzaStarElement
   }
 
   interface ElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'pza-rating': HTMLPzaRatingElement;
+    'pza-star': HTMLPzaStarElement;
   }
 
 
